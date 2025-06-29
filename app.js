@@ -31,7 +31,8 @@ main()
 async function main() {
     await mongoose.connect(MONGO_URL);
 }
-
+//reStructure listing and review routes(use Express router)
+//all those routes are in routers folder(listing.js ans review.js)
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
 

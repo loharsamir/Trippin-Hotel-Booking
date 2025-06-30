@@ -24,7 +24,11 @@ const listingSchema= new Schema({
             type: Schema.Types.ObjectId,
             ref: "Review",
         }
-    ]
+    ],
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    }
 });
 //mongosh middleWare(is i want to delete a listing then all the reviews of that particular listing is also deleted)
 listingSchema.post("findOneAndDelete",async(listing)=>{

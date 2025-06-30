@@ -40,7 +40,8 @@ router.post("/login",saveRedirectUrl,
     failureFlash: true,
 }),async(req,res)=>{
     req.flash("success","Welcome back to Wamderlust!");
-    res.redirect(res.locals.redirectUrl);
+    let redirectUrl=res.locals.redirectUrl || "/listings";
+    res.redirect(redirectUrl);
 })
 //for logout
 router.get("/logout",(req,res,next)=>{

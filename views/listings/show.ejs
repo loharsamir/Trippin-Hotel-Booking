@@ -17,19 +17,21 @@
     </div>
     
     <br>
-    
+   <% if(currUser && listing.owner._id.equals(currUser._id)){%>
         <div class="btns">
             <a  href="/listings/<%= listing._id%>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
         <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
             <button class="btn btn-dark offset-5">Delete</button>
         </form>
         </div>
-     
+    <%}%>
     
     <!-- for review -->
      <div class="col-8 offset-3 mb-3">
         <hr>
+        <%if(currUser){%>
         <h4>Leave a review</h4>
+        
         <form method="POST" action="/listings/<%=listing.id%>/reviews" novalidate class="needs-validation">
             <div class="mt-3 mb-3">
                 <label for="rating" class="form-label">Rating</label>
@@ -42,18 +44,21 @@
             </div>
             <button class="btn btn-outline-dark">Submit</button>
         </form>
-        <hr>
+        <%}%>
+        
         
         <p><b>All reviews</b></p>
         <div class="row">
             <%for(review of listing.reviews){%>
                 <div class="card col-5 ms-3 mb-3">
                     <div class="card-body">
-                        <h5 class=" card-title " >Samir</h5>
+                        <h5 class=" card-title ">@<%=review.author.username%></h5>
                         <p class="card-text"><%=review.comment%></p>
                         <p class="card-text"><%=review.rating%> stars</p>
                         <form class="mb-3" method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                            <%if(currUser && review.author && review.author._id.toString() === currUser._id.toString()){%>
                             <button class="btn btn-sm btn-dark">Delete</button>
+                            <%}%>
                         </form>
                     </div>
                 </div>

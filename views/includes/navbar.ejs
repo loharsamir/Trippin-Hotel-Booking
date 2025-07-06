@@ -1,29 +1,35 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link"  href="/listings">Home</a>
-          <a class="nav-link" href="/listings">All listings</a>
-          <a class="nav-link" href="/listings/new">Add new listings</a>
-          
-        </div>
-        <div class="navbar-nav ms-auto">
-          <%if(!currUser){%>
-            <a class="nav-link"  href="/signup">Sign Up</a>
-            <a class="nav-link" href="/login">Login</a>
-          <%}%>
-          <%if(currUser){%>
-            <a class="nav-link" href="/logout">Logout</a>
-          <%}%>
-          
-          
-        </div>
-        
+<nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-dark" href="/listings">
+      <i class="fa-solid fa-compass me-2 text-danger"></i>WanderLust
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link text-dark fw-semibold" href="/">Home</a>
+        <a class="nav-link text-dark fw-semibold" href="/listings">All Listings</a>
+        <a class="nav-link text-dark fw-semibold" href="/listings/new">Add Listing</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <% if (!currUser) { %>
+          <a class="btn btn-outline-dark me-2" href="/signup">
+            <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+          </a>
+          <a class="btn btn-dark" href="/login">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Login
+          </a>
+        <% } %>
+        <% if (currUser) { %>
+          <a class="btn btn-danger" href="/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Logout
+          </a>
+        <% } %>
       </div>
     </div>
-  </nav>
-  
+  </div>
+</nav>

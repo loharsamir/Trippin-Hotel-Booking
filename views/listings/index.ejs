@@ -1,29 +1,29 @@
 <% layout("layouts/boilerplate") -%>
-   
-    <h3>All Listings</h3>
-    <!-- <form method="get" action="/listings/new">
-        <button>Add</button>
-    </form> -->
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-        <%for(let listing of allListings){%>
-            <a href="/listings/<%=listing.id%>" class="listing-links">
-            <div class="card col listing-card" >
-                <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem" >
-                <div class="card-img-overlay"></div>
-                <div class="card-body">
-                  <p class="card-text">
-                    <b><%=listing.title%></b> <br>
-                    &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> /night
-                  </p>
-                </div>
-              </div>
-            </a>
-        <%}%>
-    </div>
-    
-    <!-- <ul>
-        <%for(let listing of allListings){%>
-            <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a></li>
-        <%}%>
-    </ul> -->
 
+
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-center text-md-start">All Listings</h3>
+    <!-- <a href="/listings/new" class="btn btn-success">+ Add Listing</a> -->
+  </div>
+
+  <!-- g-4 adds gap between columns and rows -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
+    <% for (let listing of allListings) { %>
+      <div class="col">
+        <a href="/listings/<%= listing.id %>" class="text-decoration-none text-dark">
+          <div class="card listing-card border-0 shadow-sm">
+            <img src="<%= listing.image.url %>" alt="listing image">
+            <div class="card-body">
+              <p class="card-text mb-0">
+                <strong><%= listing.title %></strong><br>
+                &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> /night
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
+</div>

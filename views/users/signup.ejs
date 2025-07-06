@@ -1,24 +1,36 @@
 <% layout("layouts/boilerplate") %>
-<div class="row mt-3">
-    <h2 class="co-6 offset-3">SignUp on Wanderlust</h2>
-    <div class="col-6 offset-3">
-        <form action="/signup" method="post" class="needs-validate" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input name="username" id="username" type="text" class="form-control" required>
-                <div class="valid-feedback"> looks good!</div>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input name="email" id="email" type="email" class="form-control" required>
-                
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input name="password" id="password" type="password" class="form-control" required>
-                
-            </div>
-            <button class="btn btn-success">SignUp</button>
+
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <h3 class="mb-4 text-center text-success">Sign Up for WanderLust</h3>
+        <form action="/signup" method="post" class="needs-validation" novalidate>
+          
+          <div class="mb-3">
+            <label for="username" class="form-label fw-semibold">Username</label>
+            <input name="username" id="username" type="text" class="form-control" required>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">Email</label>
+            <input name="email" id="email" type="email" class="form-control" required>
+            <div class="invalid-feedback">Please provide a valid email.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label fw-semibold">Password</label>
+            <input name="password" id="password" type="password" class="form-control" required>
+            <div class="invalid-feedback">Password is required.</div>
+          </div>
+
+          <div class="d-grid">
+            <button class="btn btn-success btn-block">Sign Up</button>
+          </div>
+
         </form>
+      </div>
     </div>
+  </div>
 </div>

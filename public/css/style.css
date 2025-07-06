@@ -60,35 +60,93 @@ body{
     justify-content:center;
     align-items: space-evenly;
 }
+
 /* cards */
- .listing-card{
-    border: none !important;
+  .listing-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .listing-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  /* Image formatting */
+  .listing-card img {
+    height: 20rem;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Add padding to card text */
+  .listing-card .card-body {
+    padding: 1rem;
+  }
+/* Show */
+  .show-card {
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+  }
+
+  .show-card:hover {
+    
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .show-img {
+    height: 22rem;
+    object-fit: cover;
+  }
+
+  .btns {
+    margin-top: 1rem;
     margin-bottom: 2rem;
-} 
-.card-img-top{
-    border-radius: 1rem !important;
-    width: 100% !important;
-    object-fit: cover !important;
-}  
-.card-body{
-    padding: 0 !important;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .review-card {
+    transition: box-shadow 0.3s ease;
+    border-radius: 0.5rem;
+  }
+
+  .review-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+/* new-page */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* edit-page */
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* show-img */
+.show-img{
+    height: 30vh;
+}
+.btns {
+    display: flex;
+}
+.show-card{
+    padding-left:0 ;
+    padding-right: 0;
 }
 
-.card-text p{
-    font-size: 400 !important;
-}
-.listing-links{
-    text-decoration: none;
-}
-/* .card-effect */
-.card-img-overlay{
-    opacity: 0;
-    
-}
-.card-img-overlay:hover{
-    opacity: 0.2;
-    background-color: white;
-}
 /* new-page */
 .add-btn{
     background-color: #fe424d !important;

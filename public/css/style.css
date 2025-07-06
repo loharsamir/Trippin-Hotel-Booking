@@ -19,52 +19,87 @@ body{
 .nav-link{
     color: #222222 !important;
 }
-/* Footer */
-.f-info-links a{
-    text-decoration: none;
-    color: #222222;
-    width: 5%;
-}
-.f-info-links a:hover{
-    text-decoration: underline;
-}
-.f-info-links, .f-info-brand{
+.navbar-collapse {
+    z-index: 9999;
+    position: relative;
+    background-color: #f8f9fa; /* same as .bg-light */
+    border-radius: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-nav .btn {
+      width: 100%;
+    }
+  }
+/* footer */
+footer {
+    background-color: whitesmoke;
+    color: #222;;
+    padding: 1rem 0;
+    margin-top: 2rem;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.f-info-socials {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-
-}
-.f-info-socials i {
-    font-size: 1.5rem;
-    color: #495057;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.f-info-socials i:hover {
-    color: #007bff;
-    transform: scale(1.1);
-}
-.f-info{
-    text-align: center;
-    height: 8rem;
-    background-color:#ebebeb ;
+  }
+  
+  .f-info {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
-    align-items: space-evenly;
-}
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .f-info-socials i {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .f-info-brand {
+    flex: 1 1 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .f-info-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .f-info-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .f-info-links a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 576px) {
+    .f-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .f-info-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .f-info-links a {
+      display: inline-block;
+      margin: 0.25rem;
+    }
+  }
 
 /* cards */
   .listing-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 0.75rem;
+    
     overflow: hidden;
     height: 100%;
   }

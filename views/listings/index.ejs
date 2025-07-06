@@ -13,7 +13,7 @@
     <% for (let listing of allListings) { %>
       <div class="col">
         <a href="/listings/<%= listing.id %>" class="text-decoration-none text-dark">
-          <div class="card listing-card border-0 shadow-sm">
+          <div class="card shadow listing-card border-0">
             <img src="<%= listing.image.url %>" alt="listing image">
             <div class="card-body">
               <p class="card-text mb-0">

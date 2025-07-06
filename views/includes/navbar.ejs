@@ -1,31 +1,34 @@
 <nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold fs-4 text-dark" href="/listings">
+    <a class="navbar-brand fw-bold fs-4 text-dark" href="/" method>
       <i class="fa-solid fa-compass me-2 text-danger"></i>WanderLust
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <!-- Toggler button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <!-- Collapsing content -->
+    <div class="collapse navbar-collapse bg-light mt-2 mt-md-0 rounded px-3 py-2" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link text-dark fw-semibold" href="/">Home</a>
         <a class="nav-link text-dark fw-semibold" href="/listings">All Listings</a>
         <a class="nav-link text-dark fw-semibold" href="/listings/new">Add Listing</a>
       </div>
 
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-md-auto mt-2 mt-md-0">
         <% if (!currUser) { %>
-          <a class="btn btn-outline-dark me-2" href="/signup">
+          <a class="btn btn-outline-dark me-2 mb-2 mb-md-0" href="/signup">
             <i class="fa-solid fa-user-plus me-1"></i> Sign Up
           </a>
-          <a class="btn btn-dark" href="/login">
+          <a class="btn btn-dark mb-2 mb-md-0" href="/login">
             <i class="fa-solid fa-right-to-bracket me-1"></i> Login
           </a>
         <% } %>
         <% if (currUser) { %>
-          <a class="btn btn-danger" href="/logout">
+          <a class="btn btn-danger mb-2 mb-md-0" href="/logout">
             <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Logout
           </a>
         <% } %>

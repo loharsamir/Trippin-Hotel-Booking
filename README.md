@@ -24,7 +24,6 @@ WanderLust is a full-stack villa listing web app. Users can explore beautiful li
 
 **Databse:**
 - MongoDB with Mongoose
-- Passport.js for Authentication
 
 ---
 

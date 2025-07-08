@@ -31,7 +31,7 @@ app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
-//const dbUrl ="mongodb://127.0.0.1:27017/wanderlust";
+// const dbUrl ="mongodb://127.0.0.1:27017/wanderlust";
 const dbUrl=process.env.ATLASDB_URL;
 
 const store= MongoStore.create({

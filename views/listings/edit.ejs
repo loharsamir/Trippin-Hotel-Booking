@@ -46,6 +46,29 @@
               <div class="invalid-feedback">Location should be valid</div>
             </div>
 
+<div class="mb-3">
+  <label for="category" class="form-label">Category</label>
+  <select name="listing[category]" class="form-select" required>
+    <% const categories = [
+      { name: "Sea View", icon: "🌊" },
+      { name: "Hill View", icon: "⛰️" },
+      { name: "Pool Villa", icon: "🏊" },
+      { name: "Forest View", icon: "🌳" },
+      { name: "Budget Stay", icon: "💰" },
+      { name: "Luxury Stay", icon: "👑" },
+      { name: "Desert Camp", icon: "🏜️" },
+      // { name: "Lake House", icon: "🏞️" }
+    ]; %>
+
+    <% for (let cat of categories) { %>
+      <option value="<%= cat.name %>" <%= listing.category === cat.name ? "selected" : "" %>>
+        <%= `${cat.icon} ${cat.name}` %>
+      </option>
+    <% } %>
+  </select>
+  <div class="invalid-feedback">Please select a category</div>
+</div>
+
             <div class="d-grid mt-4">
               <button class="btn btn-warning">Save Changes</button>
             </div>

@@ -1,16 +1,18 @@
 <% layout("layouts/boilerplate") -%>
 
 <style>
- 
+/* Add any specific styles if needed here */
 </style>
 
 <div class="container mt-4">
-
   <div class="row justify-content-center">
+
+    <!-- Title -->
     <div class="col-md-8 text-center">
       <h2><b><%= listing.title %></b></h2>
     </div>
 
+    <!-- Listing Card -->
     <div class="col-md-8">
       <div class="card show-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
@@ -19,65 +21,68 @@
           <p class="card-text"><%= listing.description %></p>
           <p class="card-text">💰 &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> /night</p>
           <p class="card-text">📍 <%= listing.location %>, <%= listing.country %></p>
+          <p class="card-text">🏷️ <b>Category:</b> <%= listing.category || 'Not specified' %></p>
+          <p class="card-text">📧 <b>Contact:</b> <%= listing.owner.email || 'No email provided' %></p>
         </div>
       </div>
     </div>
 
+    <!-- Edit/Delete Buttons for Owner -->
     <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
-        <div class="col-md-8 btns mt-4">
-          <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark me-2">Edit</a>
-          <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline">
-            <button class="btn btn-danger">Delete</button>
-          </form>
-        </div>
-      <% } %>
+      <div class="col-md-8 btns mt-4">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark me-2">Edit</a>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    <% } %>
 
     <!-- Review Section -->
     <div class="col-md-8 mt-5">
+      <hr>
+
+      <% if (currUser) { %>
+        <h4 class="mb-3">Leave a Review</h4>
+        <form method="POST" action="/listings/<%= listing.id %>/reviews" novalidate class="needs-validation">
+          <label for="rating" class="form-label">Rating</label>
+          <fieldset class="starability-slot mb-3">
+            <input type="radio" id="rate-none" name="review[rating]" value="1" checked hidden />
+            <% for (let i = 1; i <= 5; i++) { %>
+              <input type="radio" id="rate-<%= i %>" name="review[rating]" value="<%= i %>" />
+              <label for="rate-<%= i %>" title="<%= ['Terrible', 'Not good', 'Average', 'Very good', 'Amazing'][i - 1] %>"></label>
+            <% } %>
+          </fieldset>
+
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea name="review[comment]" id="comment" rows="4" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please submit a comment for the review.</div>
+          </div>
+
+          <button class="btn btn-outline-dark">Submit</button>
+        </form>
         <hr>
-        <% if (currUser) { %>
-          <h4 class="mb-3">Leave a Review</h4>
-          <form method="POST" action="/listings/<%= listing.id %>/reviews" novalidate class="needs-validation">
-            <label for="rating" class="form-label">Rating</label>
-            <fieldset class="starability-slot mb-3">
-                <!-- Hidden option visually unselectable -->
-                <input type="radio" id="rate-none" name="review[rating]" value="1" checked hidden />
-              
-                <% for (let i = 1; i <= 5; i++) { %>
-                  <input type="radio" id="rate-<%= i %>" name="review[rating]" value="<%= i %>" />
-                  <label for="rate-<%= i %>" title="<%= ['Terrible', 'Not good', 'Average', 'Very good', 'Amazing'][i - 1] %>"></label>
-                <% } %>
-              </fieldset>
-      
-            <div class="mb-3">
-              <label for="comment" class="form-label">Comment</label>
-              <textarea name="review[comment]" id="comment" rows="4" class="form-control" required></textarea>
-              <div class="invalid-feedback">Please submit a comment for the review.</div>
+      <% } %>
+
+      <!-- All Reviews -->
+      <h5 class="mt-4"><b>All Reviews</b></h5>
+      <div class="row">
+        <% for (review of listing.reviews) { %>
+          <div class="col-md-6 mb-3">
+            <div class="card review-card p-3">
+              <h6 class="card-title">@<%= review.author.username %></h6>
+              <p class="card-text"><%= review.comment %></p>
+              <p class="starability-result" data-rating="<%= review.rating %>"></p>
+
+              <% if (currUser && review.author && review.author._id.toString() === currUser._id.toString()) { %>
+                <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </form>
+              <% } %>
             </div>
-      
-            <button class="btn btn-outline-dark">Submit</button>
-          </form>
-          <hr>
+          </div>
         <% } %>
-      
-        <h5 class="mt-4"><b>All Reviews</b></h5>
-        <div class="row">
-          <% for (review of listing.reviews) { %>
-            <div class="col-md-6 mb-3">
-              <div class="card review-card p-3">
-                <h6 class="card-title">@<%= review.author.username %></h6>
-                <p class="card-text"><%= review.comment %></p>
-                <p class="starability-result" data-rating="<%= review.rating %>"></p>
-      
-                <% if (currUser && review.author && review.author._id.toString() === currUser._id.toString()) { %>
-                  <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                    <button class="btn btn-sm btn-outline-danger">Delete</button>
-                  </form>
-                <% } %>
-              </div>
-            </div>
-          <% } %>
-        </div>
       </div>
+    </div>
   </div>
 </div>

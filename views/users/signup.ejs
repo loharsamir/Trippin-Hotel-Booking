@@ -5,6 +5,7 @@
     <div class="card shadow-sm border-0">
       <div class="card-body p-4">
         <h3 class="mb-4 text-center text-success">Sign Up for WanderLust</h3>
+        
         <form action="/signup" method="post" class="needs-validation" novalidate>
           
           <div class="mb-3">
@@ -28,8 +29,16 @@
           <div class="d-grid">
             <button class="btn btn-success btn-block">Sign Up</button>
           </div>
-
         </form>
+
+        <!-- 👇 Login link for already registered users -->
+        <div class="text-center mt-3">
+          <p class="mb-0">
+            Already have an account?
+            <a href="/login" class="text-decoration-none text-success fw-semibold">Log in here</a>
+          </p>
+        </div>
+
       </div>
     </div>
   </div>

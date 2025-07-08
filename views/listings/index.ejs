@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 
 <!-- Search field -->
-<div class="container mt-4 mb-4">
+<div class="container mt-5 mb-4">
   <form method="GET" action="/listings" class="d-flex justify-content-center">
     <input
       type="text"
@@ -29,7 +29,6 @@
         { name: "Budget Stay", label: "Budget Stay", icon: "fa-coins" },
         { name: "Luxury Stay", label: "Luxury Stay", icon: "fa-crown" },
         { name: "Desert Camp", label: "Desert Camp", icon: "fa-sun-plant-wilt" },
-        // { name: "Lake House", label: "Lake House", icon: "fa-water-ladder" }
       ]; %>
 
       <% for (let cat of categories) { %>
@@ -48,7 +47,10 @@
 <!-- Listings Section -->
 <div class="container my-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="text-center text-md-start">All Listings</h3>
+    <h3 class="text-center text-md-start mb-0">All Listings</h3>
+    <a href="/listings/new" class="btn btn-danger rounded-pill px-4 shadow-sm">
+      <i class="fa-solid fa-plus me-2"></i> Add Listing
+    </a>
   </div>
 
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">

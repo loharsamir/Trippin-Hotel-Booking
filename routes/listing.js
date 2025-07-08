@@ -34,6 +34,25 @@ router
 router.get("/:id/edit",isLoggedIn,isOwner,
     wrapAsync(listingController.renderEdit));
 
+router.get("/", wrapAsync(async (req, res) => {
+    const { category } = req.query;
+    const categories = ["Sea View", "Hill View", "Pool Villa", "Forest View", "Budget Stay"];
+    let listings;
+
+    if (category && categories.includes(category)) {
+        listings = await Listing.find({ category });
+    } else {
+        listings = await Listing.find({});
+    }
+
+    res.render("listings/index", {
+        allListings: listings,
+        selectedCategory: category || "",
+        categories
+    });
+}));
+
+
 
 
 module.exports=router;

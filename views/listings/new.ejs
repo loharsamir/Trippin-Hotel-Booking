@@ -8,7 +8,7 @@
           <h3 class="text-center mb-4 text-danger fw-bold">Create a New Listing</h3>
 
           <form method="post" action="/listings" novalidate class="needs-validation">
-            
+
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input name="listing[title]" type="text" class="form-control" placeholder="Add a catchy title" required>
@@ -45,10 +45,27 @@
               <div class="invalid-feedback">Location should be valid</div>
             </div>
 
+            <!-- ✅ Category Dropdown -->
+<div class="mb-3">
+  <label for="category" class="form-label">Category</label>
+  <select class="form-select" name="listing[category]" >
+    <option value="" disabled selected>Select a category</option>
+    <option value="Sea View">🌊 Sea View</option>
+    <option value="Hill View">⛰ Hill View</option>
+    <option value="Pool Villa">🏊 Pool Villa</option>
+    <option value="Forest View">🌲 Forest View</option>
+    <option value="Budget Stay">💰 Budget Stay</option>
+    <option value="Luxury Stay">🏰 Luxury Stay</option>
+    <option value="Desert Camp">🏜 Desert Camp</option>
+    <!-- <option value="Lake House">🏞 Lake House</option> -->
+  </select>
+  <div class="invalid-feedback">Please select a category</div>
+</div>
+
             <div class="d-grid mt-4">
               <button class="btn btn-danger">Add Listing</button>
             </div>
-            
+
           </form>
         </div>
       </div>

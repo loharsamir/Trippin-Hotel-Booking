@@ -31,9 +31,11 @@
     <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
       <div class="col-md-8 btns mt-4">
         <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark me-2">Edit</a>
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline">
-          <button class="btn btn-danger">Delete</button>
-        </form>
+     <form action="/listings/<%= listing._id %>?_method=DELETE<%= onlyMine ? '&mine=true' : '' %>" method="POST">
+  <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this listing?')">
+    Delete
+  </button>
+</form>
       </div>
     <% } %>
 

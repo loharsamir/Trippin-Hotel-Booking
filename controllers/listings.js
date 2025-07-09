@@ -22,6 +22,7 @@ module.exports.renderNewForm = (req, res) => {
 // 🟢 Show single listing
 module.exports.showListing = async (req, res, next) => {
   let { id } = req.params;
+  const { mine } = req.query;
   let listing = await Listing.findById(id)
     .populate({ path: "reviews", populate: { path: "author" } })
     .populate("owner");
@@ -31,7 +32,9 @@ module.exports.showListing = async (req, res, next) => {
     return res.redirect("/listings");
   }
 
-  res.render("listings/show.ejs", { listing });
+   // 🆕 Pass `onlyMine` to show.ejs
+  const onlyMine = mine === "true";
+  res.render("listings/show.ejs", { listing, onlyMine, currUser: req.user });
 };
 
 // 🟢 Create new listing with category
@@ -70,9 +73,13 @@ module.exports.updateListing = async (req, res, next) => {
 // 🟢 Delete listing and reviews
 module.exports.deleteListing = async (req, res, next) => {
   let { id } = req.params;
+  
   let deletedListing = await Listing.findByIdAndDelete(id);
 
   console.log(deletedListing);
   req.flash("success", "Listing Deleted..!");
-  res.redirect("/listings");
+  // Preserve `mine=true` if it was present
+  const redirectUrl = req.query.mine === "true" ? "/listings?mine=true" : "/listings";
+//   req.flash("success", "Listing deleted successfully!");
+  res.redirect(redirectUrl);
 };

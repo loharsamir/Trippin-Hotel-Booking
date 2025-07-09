@@ -10,6 +10,9 @@
       placeholder="Search listings by title, location..."
       value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
     />
+    <% if (onlyMine) { %>
+      <input type="hidden" name="mine" value="true" />
+    <% } %>
     <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">
       Search
     </button>
@@ -19,6 +22,9 @@
 <!-- Category Filters -->
 <div class="container my-4">
   <form method="GET" action="/listings">
+    <% if (onlyMine) { %>
+      <input type="hidden" name="mine" value="true" />
+    <% } %>
     <div class="d-flex flex-wrap justify-content-center gap-3">
       <% const categories = [
         { name: "", label: "All", icon: "fa-house" },
@@ -44,15 +50,33 @@
   </form>
 </div>
 
-<!-- Listings Section -->
+<!-- Listings Header and Buttons -->
 <div class="container my-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="text-center text-md-start mb-0">All Listings</h3>
-    <a href="/listings/new" class="btn btn-danger rounded-pill px-4 shadow-sm">
-      <i class="fa-solid fa-plus me-2"></i> Add Listing
-    </a>
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <h3 class="mb-0 text-center text-md-start">
+      <%= onlyMine ? "My Listings" : "All Listings" %>
+    </h3>
+
+    <div class="d-flex gap-2">
+      <% if (currentUser) { %>
+        <% if (onlyMine) { %>
+          <a href="/listings" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm">
+            <i class="fa-solid fa-globe me-1"></i>All Listing
+          </a>
+        <% } else { %>
+          <a href="/listings?mine=true" class="btn btn-outline-danger rounded-pill px-4 shadow-sm">
+            <i class="fa-solid fa-user me-1"></i> My Listings
+          </a>
+        <% } %>
+      <% } %>
+
+      <a href="/listings/new" class="btn btn-danger rounded-pill px-4 shadow-sm">
+        <i class="fa-solid fa-plus me-2"></i> Add Listing
+      </a>
+    </div>
   </div>
 
+  <!-- Listings -->
   <% if (listings.length === 0) { %>
     <div class="text-center text-muted my-5">
       No listings found matching your criteria.
@@ -62,7 +86,7 @@
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
     <% for (let listing of listings) { %>
       <div class="col">
-        <a href="/listings/<%= listing.id %>" class="text-decoration-none text-dark">
+        <a href="/listings/<%= listing.id %><%= onlyMine ? '?mine=true' : '' %>" class="text-decoration-none text-dark">
           <div class="card shadow listing-card border-0">
             <img src="<%= listing.image.url %>" alt="listing image">
             <div class="card-body">

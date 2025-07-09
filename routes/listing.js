@@ -23,7 +23,7 @@ function escapeRegex(text) {
 
 // ✅ Combined GET route for index, search, and filter
 router.get("/", wrapAsync(async (req, res) => {
-  const { search, category } = req.query;
+  const { search, category,mine } = req.query;
   let query = {};
 
   if (search) {
@@ -40,6 +40,12 @@ router.get("/", wrapAsync(async (req, res) => {
   if (category && categories.includes(category)) {
     query.category = category;
   }
+   // 👤 "My Listings" Filter
+  let onlyMine = false;
+  if (mine === "true" && req.isAuthenticated()) {
+    query.owner = req.user._id;
+    onlyMine = true;
+  }
 
   const listings = await Listing.find(query);
 
@@ -47,7 +53,9 @@ router.get("/", wrapAsync(async (req, res) => {
     listings,
     searchQuery: search || "",
     selectedCategory: category || "",
-    categories
+    onlyMine,
+    categories,
+    currentUser: req.user
   });
 }));
 

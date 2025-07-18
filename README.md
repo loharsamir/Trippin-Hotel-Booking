@@ -1,4 +1,4 @@
-# 🌍 WanderLust - Villa Listing Web App
+# 🌍 Trippin - Villa Listing Web App
 
 WanderLust is a full-stack villa listing web app. Users can explore beautiful listings, filter by category, and manage listings with authentication and authorization.
 

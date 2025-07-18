@@ -7,7 +7,7 @@ WanderLust is a full-stack villa listing web app. Users can explore beautiful li
 ## 🚀 Live Demo
 
 - **Production Site:** [https://wanderlust-hotel-listing.onrender.com](https://wanderlust-hotel-listing.onrender.com)
-- **Development Site:** [https://wanderlust-hotel-booking-dev.onrender.com](https://wanderlust-hotel-booking-dev.onrender.com)
+- **Development Site:** https://trippin-hotel-booking.onrender.com
 
 ---
 

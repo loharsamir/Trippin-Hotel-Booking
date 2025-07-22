@@ -203,3 +203,16 @@ footer {
     padding-left:0 ;
     padding-right: 0;
 }
+
+.watermark {
+    position: absolute;
+    bottom: 10px; 
+    right: 15px; 
+    font-size: 15px; 
+    color: rgba(0, 0, 0, 0.3); 
+    font-style: italic;
+}
+
+footer {
+    position: relative;
+}

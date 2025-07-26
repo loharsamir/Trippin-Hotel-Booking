@@ -1,41 +1,95 @@
 <nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm sticky-top">
-  <div class="container-fluid">
-    <!-- <a class="navbar-brand fw-bold fs-4 text-dark" href="/" method>
-      <i class="fa-solid fa-compass me-2 text-danger"></i>WanderLust
-    </a> -->
-    <a class="navbar-brand ms-4 me-0" href="/">
-      <img src="/images/tripinLogo.png" alt="Tripin Logo" height="55" />
+  <div class="container-fluid px-3">
+
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center me-2" href="/">
+      <img src="/images/tripinLogo.png" alt="Tripin Logo" class="img-fluid" style="height: 48px;" />
     </a>
 
-    <!-- Toggler button for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Hamburger Button (Mobile Only) -->
+    <button class="navbar-toggler border-0 d-md-none" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Collapsing content -->
-    <div class="collapse navbar-collapse bg-light mt-2 mt-md-0 rounded px-3 py-2" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link text-dark fw-semibold" href="/">Home</a>
-        <a class="nav-link text-dark fw-semibold" href="/listings">All Listings</a>
-        <a class="nav-link text-dark fw-semibold" href="/listings/new">Add Listing</a>
+    <!-- Desktop Nav -->
+    <div class="collapse navbar-collapse d-none d-md-flex" id="navbarNavAltMarkup">
+      <!-- Left Links -->
+      <div class="navbar-nav ms-2 nav-links-custom">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/listings">All Listings</a>
+        <a class="nav-link" href="/listings/new">Add Listing</a>
       </div>
 
-      <div class="navbar-nav ms-md-auto mt-2 mt-md-0">
+      <!-- Right Side -->
+      <div class="navbar-nav ms-auto d-flex align-items-center">
         <% if (!currUser) { %>
-          <a class="btn btn-outline-dark me-2 mb-2 mb-md-0" href="/signup">
+          <a class="btn btn-outline-dark me-2" href="/signup">
             <i class="fa-solid fa-user-plus me-1"></i> Sign Up
           </a>
-          <a class="btn btn-dark mb-2 mb-md-0" href="/login">
+          <a class="btn btn-dark" href="/login">
             <i class="fa-solid fa-right-to-bracket me-1"></i> Login
           </a>
-        <% } %>
-        <% if (currUser) { %>
-          <a class="btn btn-danger mb-2 mb-md-0" href="/logout">
+        <% } else { %>
+          <div class="d-flex align-items-center bg-light px-3 py-1 rounded shadow-sm me-3">
+            <i class="fa-solid fa-user text-primary me-2"></i>
+            <span class="fw-semibold text-dark">Hi, <%= currUser.username %></span>
+          </div>
+          <a class="btn btn-danger" href="/logout">
             <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Logout
           </a>
         <% } %>
       </div>
     </div>
+
+    <!-- Right Offcanvas for Mobile -->
+    <div class="offcanvas offcanvas-end d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-semibold" id="mobileMenuLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <a class="nav-link fw-semibold mb-2" href="/">Home</a>
+        <a class="nav-link fw-semibold mb-2" href="/listings">All Listings</a>
+        <a class="nav-link fw-semibold mb-4" href="/listings/new">Add Listing</a>
+
+        <% if (!currUser) { %>
+          <a class="btn btn-outline-dark w-100 mb-2" href="/signup">
+            <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+          </a>
+          <a class="btn btn-dark w-100" href="/login">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Login
+          </a>
+        <% } else { %>
+          <a class="btn btn-danger w-100" href="/logout">
+            <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Logout
+          </a>
+        <% } %>
+      </div>
+    </div>
+
   </div>
 </nav>
+
+<style>
+  .nav-links-custom .nav-link {
+    padding: 6px 14px;
+    margin-right: 8px;
+    border-radius: 8px;
+    color: #212529;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .nav-links-custom .nav-link:hover {
+    background-color: #e0e0e0;
+    color: #dc3545;
+    text-decoration: none;
+  }
+
+  @media (max-width: 767.98px) {
+    .nav-links-custom {
+      display: none;
+    }
+  }
+</style>
